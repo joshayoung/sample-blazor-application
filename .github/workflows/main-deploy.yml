@@ -16,15 +16,15 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.7
+        dotnet-version: '5.0.*'
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
       run: dotnet publish test-blazor-application.csproj -c Release -o release --nologo
     
     # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
-#    - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
-#      run: sed -i 's/<base href="\/" \/>/<base href="\/BlazorGitHubPagesDemo\/" \/>/g' release/wwwroot/index.html
+#    - name: Change base-tag in index.html from / to test-blazor-application
+#      run: sed -i 's/<base href="\/" \/>/<base href="\/test-blazor-application\/" \/>/g' release/wwwroot/index.html
     
     # copy index.html to 404.html to serve the same file when a file is not found
     - name: copy index.html to 404.html
